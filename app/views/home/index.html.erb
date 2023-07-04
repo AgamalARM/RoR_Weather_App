@@ -1,1 +1,48 @@
-<p>Home page</p>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Journal</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="holder headline">
+      Weather Journal App
+    </div>
+    <div class="holder zip">
+   <%= form_tag("/", method: "post") do %>
+   <%= label_tag :zipcode %>
+   <%= text_field_tag :zipcode %>
+   <%= label_tag "How are you feeling today?" %>
+   <%= text_field_tag :feeling %>
+   <p>
+    <%= submit_tag("Submit") %>
+  </p>
+  <% end %>
+ </div> 
+  <% if @data != nil %>
+    <div id="entry">
+      <div class="holder entry">
+        <div class="title">Most Recent Entry</div>
+        <div id="entryHolder">
+          <div id="date">Date : <%= Date.today%></div>
+          <div id="city">City : <%= @data['name']%></div>
+          <div id="temp">temperature: <%= @data['main']['temp']%></div>
+          <div id="content">Your Feeling : <%=  @feeling  %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+
+
+  
+</body>
+
+</html>
